@@ -1,0 +1,25 @@
+﻿<Window x:Class="WpfApp6.Window2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp6"
+        mc:Ignorable="d"
+        Title="Редактирование" Height="470" Width="400">
+    <Grid>
+        <StackPanel Background="#FFADEBF7">
+            <TextBlock Text="Редактирование" FontSize="25" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Margin="0 20 0 0" Text="ФИО"></TextBlock>
+            <TextBox x:Name="newname" Margin="0 0 0 0" Height="25" FontSize="14"></TextBox>
+            <TextBlock Margin="0 20 0 0" Text="Инвентарный номер"></TextBlock>
+            <TextBox x:Name="newinvnum" Margin="0 0 0 0" Height="25" FontSize="14"></TextBox>
+            <TextBlock Margin="0 20 0 0" Text="Тип оборудования"></TextBlock>
+            <TextBox x:Name="newinvtype" Margin="0 0 0 0" Height="25" FontSize="14"></TextBox>
+            <TextBlock Margin="0 20 0 0" Text="Стоимость оборудования"></TextBlock>
+            <TextBox x:Name="newprice" Margin="0 0 0 0" Height="25" FontSize="14"></TextBox>
+            <TextBlock Margin="0 20 0 0" Text="Адрес"></TextBlock>
+            <TextBox x:Name="newadress" Margin="0 0 0 0" Height="25" FontSize="14"></TextBox>
+            <Button x:Name="RedPerson" Height="25" Margin="0 30" Content="Редактировать" FontSize="15" Background="#FF88D9FF" Click="RedPerson_Click" ></Button>
+        </StackPanel>
+    </Grid>
+</Window>

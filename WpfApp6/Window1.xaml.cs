@@ -29,6 +29,7 @@ namespace WpfApp6
 
         private void AddPerson_Click(object sender, RoutedEventArgs e)
         {
+            //Запрежаем вводить буквы
             int invnumValue;
             if (!int.TryParse(newinvnum.Text, out invnumValue))
             {
@@ -42,6 +43,7 @@ namespace WpfApp6
                 return;
             }
 
+            //Принимаем значения нового сотрудника
             Person person = new Person()
             {
                 Name = newname.Text,
@@ -50,6 +52,7 @@ namespace WpfApp6
                 price = invpriceValue,
                 adress = newadress.Text
             };
+            //Сохраняем в БД
             qqEntities.Person.Add(person);
             qqEntities.SaveChanges();
             MessageBox.Show("Сотрудник добавлен");

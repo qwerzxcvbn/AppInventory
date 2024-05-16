@@ -20,12 +20,17 @@ namespace WpfApp6
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Общий список ВСЕХ персонов из бд
+        List<Person> persons;
+        //Подключаем бд
         private qqEntities dbContext = new qqEntities();
         qqEntities qqEntities = new qqEntities();
         public MainWindow()
         {
             InitializeComponent();
+            //Выводим данные из бд в DataGrid
             Person.ItemsSource = qqEntities.Person.ToList();
+            persons = qqEntities.Person.ToList();
             App();
         }
 
@@ -36,25 +41,39 @@ namespace WpfApp6
 
         private void Button_Poisk(object sender, RoutedEventArgs e)
         {
-            
-            App();
+            string userSearch = vvod.Text;
+            //Поиск по инвентарному номеру
+            persons = qqEntities.Person.Where(x => x.invnum.ToString().Contains(userSearch)).ToList();
+            Person.ItemsSource = null;
+            Person.ItemsSource = persons;     
         }
 
         private void Button_add(object sender, RoutedEventArgs e)
         {
+            //Переход на окно добавления
             Window1 window1 = new Window1();
             window1.Show();
-            App();
-            
+            App();        
         }
 
         private void Button_red(object sender, RoutedEventArgs e)
         {
+            if (Person.SelectedItem != null)
+            {
+                Person selected = Person.SelectedItem as Person;
 
+                // Создаем новое окно для редактирования
+                Window2 window2 = new Window2(selected);
+                window2.ShowDialog();
+
+                // Обновляем DataGrid после закрытия окна редактирования
+                App();
+            }
         }
         
         private void App()
         {
+            //обновление DataGrid
             Person.ItemsSource = qqEntities.Person.ToList();
         }
 
@@ -78,10 +97,12 @@ namespace WpfApp6
 
         private void Button_gen(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < 10; i++)
+            //Генерируем 200 строк
+            for (int i = 0; i < 200; i++)
             {
+                //Используем классы которые создали ниже
                 Person entity = new Person
-                {
+                {                
                     Name = GetRandomName(),
                     invnum = GetRandomInvNum(),
                     invtype = GetRandomInvType(),
@@ -94,6 +115,7 @@ namespace WpfApp6
 
             dbContext.SaveChanges();
         }
+        //Ниже указаны классы и данные для генерации
         private string GetRandomName()
         {
             string[] fullNames = { "Романов Роман Романович", "Морозов Александр Николаевич", "Иванов Иван Иванович", "Попов Дмитрий Владимирович", "Скворцов Сергей Александрович",  "Скворцов Сергей Александрович" };
@@ -132,26 +154,31 @@ namespace WpfApp6
 
         private void Combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //Сортировка по имени
             if (Combo.SelectedIndex == 0)
             {
                 var source = qqEntities.Person.OrderBy(x => x.Name).ToList();
                 Person.ItemsSource = source;
             }
+            //Сортировка по инвентарному номеру
             if (Combo.SelectedIndex == 1)
             {
                 var source = qqEntities.Person.OrderBy(x => x.invnum).ToList();
                 Person.ItemsSource = source;
             }
+            //Сортировка по типу оборудования
             if (Combo.SelectedIndex == 2)
             {
                 var source = qqEntities.Person.OrderBy(x => x.invtype).ToList();
                 Person.ItemsSource = source;
             }
+            //Сортировка по стоимости
             if (Combo.SelectedIndex == 3)
             {
                 var source = qqEntities.Person.OrderBy(x => x.price).ToList();
                 Person.ItemsSource = source;
             }
+            //Сортировка по адресу
             if (Combo.SelectedIndex == 4)
             {
                 var source = qqEntities.Person.OrderBy(x => x.adress).ToList();
