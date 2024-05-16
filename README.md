@@ -33,3 +33,6 @@
 ![Страница добавления](https://github.com/qwerzxcvbn/AppInventory/blob/main/Screenshot/Add.png)
 ## Страница добавления
 </br> </br> </br>
+![Страница редактирования]()
+## Страница добавления
+</br> </br> </br>
