@@ -53,8 +53,8 @@ namespace WpfApp6
             qqEntities.Person.Add(person);
             qqEntities.SaveChanges();
             MessageBox.Show("Сотрудник добавлен");
-        }
+            
+        }     
+
     }
-    
-    
 }

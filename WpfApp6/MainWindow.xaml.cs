@@ -26,6 +26,7 @@ namespace WpfApp6
         {
             InitializeComponent();
             Person.ItemsSource = qqEntities.Person.ToList();
+            App();
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -35,14 +36,15 @@ namespace WpfApp6
 
         private void Button_Poisk(object sender, RoutedEventArgs e)
         {
-            string poisk = vvod.Text;
             
+            App();
         }
 
         private void Button_add(object sender, RoutedEventArgs e)
         {
             Window1 window1 = new Window1();
             window1.Show();
+            App();
             
         }
 
@@ -50,9 +52,15 @@ namespace WpfApp6
         {
 
         }
+        
+        private void App()
+        {
+            Person.ItemsSource = qqEntities.Person.ToList();
+        }
 
         private void Button_del(object sender, RoutedEventArgs e)
         {
+
             if (Person.SelectedItem != null)
             {
                 Person selectedPerson = Person.SelectedItem as Person;
@@ -65,6 +73,7 @@ namespace WpfApp6
                 qqEntities.Person.Remove(selectedPerson);
                 qqEntities.SaveChanges();
             }
+            App();
         }
 
         private void Button_gen(object sender, RoutedEventArgs e)
@@ -147,7 +156,8 @@ namespace WpfApp6
             {
                 var source = qqEntities.Person.OrderBy(x => x.adress).ToList();
                 Person.ItemsSource = source;
-            }     
+            }
+           
         }
     }
 }
