@@ -30,3 +30,6 @@
 ![Главная страница](https://github.com/qwerzxcvbn/AppInventory/blob/main/Screenshot/Main.png)
 ## Главная страница
 </br> </br> </br>
+![Страница добавления](https://github.com/qwerzxcvbn/AppInventory/blob/main/Screenshot/Add.png)
+## Страница добавления
+</br> </br> </br>
